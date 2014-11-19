@@ -14,3 +14,7 @@ gem 'spring',        group: :development
 # debugger
 gem 'byebug', group: [:development, :test]
 
+group :development, :test do
+  gem 'cucumber-rails'
+  gem 'rspec-rails'
+end
