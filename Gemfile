@@ -15,7 +15,7 @@ gem 'spring',        group: :development
 gem 'byebug', group: [:development, :test]
 
 group :development, :test do
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', require: false
   gem 'rspec-rails'
   gem 'webmock'
 end
