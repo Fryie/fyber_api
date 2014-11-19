@@ -1,0 +1,15 @@
+{
+  "code": "NO_CONTENT" ,
+  "message": "OK",
+  "count": "0" ,
+  "pages": "0" ,
+  "information": {
+    "app_name": "SP Test App" ,
+    "appid": "157",
+    "virtual_currency": "Coins",
+    "country": "US" ,
+    "language": "EN" ,
+    "support_url": "http://iframe.sponsorpay.com/mobile/DE/157/my_offers"
+  },
+  "offers": []
+}

@@ -17,4 +17,5 @@ gem 'byebug', group: [:development, :test]
 group :development, :test do
   gem 'cucumber-rails'
   gem 'rspec-rails'
+  gem 'webmock'
 end
