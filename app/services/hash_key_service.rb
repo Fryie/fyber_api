@@ -3,8 +3,9 @@ class HashKeyService
   def self.compute(params)
     sorted_params = sort(params)
     param_string = join(sorted_params)
-    param_string += "&#{Settings.fyber_api.api_key}"
-    Digest::SHA1.hexdigest param_string
+    param_string_with_api_key = "#{param_string}&#{Settings.fyber_api.api_key}"
+
+    Digest::SHA1.hexdigest param_string_with_api_key
   end
 
   private
