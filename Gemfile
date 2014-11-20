@@ -21,6 +21,9 @@ gem 'active_attr'
 group :development, :test do
   gem 'cucumber-rails', require: false
   gem 'rspec-rails'
+end
+
+group :test do
   gem 'webmock'
   gem 'timecop'
 end
