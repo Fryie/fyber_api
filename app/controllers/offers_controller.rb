@@ -12,7 +12,7 @@ class OffersController < ApplicationController
       @offers = OfferService.search(query)
       render :offer_list
     rescue OfferSearchException
-      flash[:error] = 'Oops, something went wrong!'
+      flash.now[:error] = 'Oops, something went wrong!'
       render :search_form
     end
   end
