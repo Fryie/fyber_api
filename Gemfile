@@ -14,6 +14,9 @@ gem 'spring',        group: :development
 # debugger
 gem 'byebug', group: [:development, :test]
 
+gem 'httparty'
+gem 'rails_config'
+
 group :development, :test do
   gem 'cucumber-rails', require: false
   gem 'rspec-rails'
