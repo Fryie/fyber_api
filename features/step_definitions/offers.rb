@@ -8,3 +8,21 @@ When /^I submit a request$/ do
   fill_in 'Page', with: 3
   click_button 'Search'
 end
+
+Then /^I should see the offers$/ do
+  within first('.offer') do
+    expect(page).to have_selector '.title', text: 'Tap Fish'
+    expect(page).to have_selector '.payout', text: '90'
+    expect(page).to have_selector '.thumbnail img[src="THUMBNAIL1_LOWRES"]'
+  end
+
+  within '.offer:eq(2)' do
+    expect(page).to have_selector '.title', text: 'Offer 2'
+    expect(page).to have_selector '.payout', text: '90'
+    expect(page).to have_selector '.thumbnail img[src="THUMBNAIL2_LOWRES"]'
+  end
+end
+
+Then /^I should see that there are no offers$/ do
+  expect(page).to have_selector '.no_offers', text: 'No offers'
+end
