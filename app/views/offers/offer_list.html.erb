@@ -1,0 +1,15 @@
+<% if @offers.any? %>
+  <ul>
+    <% @offers.each do |offer| %>
+      <li>
+        <div class="offer">
+          <div class="title"><%= offer.title %></div>
+          <div class="payout"><%= offer.payout %></div>
+          <div class="thumbnail"><img src="<%= offer.thumbnail %>" alt="Thumbnail image" /></div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <div class="no_offers">No offers</div>
+<% end %>

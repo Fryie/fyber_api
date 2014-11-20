@@ -10,13 +10,13 @@ When /^I submit a request$/ do
 end
 
 Then /^I should see the offers$/ do
-  within first('.offer') do
+  within first('li .offer') do
     expect(page).to have_selector '.title', text: 'Tap Fish'
     expect(page).to have_selector '.payout', text: '90'
     expect(page).to have_selector '.thumbnail img[src="THUMBNAIL1_LOWRES"]'
   end
 
-  within '.offer:eq(2)' do
+  within 'li:eq(2) .offer' do
     expect(page).to have_selector '.title', text: 'Offer 2'
     expect(page).to have_selector '.payout', text: '90'
     expect(page).to have_selector '.thumbnail img[src="THUMBNAIL2_LOWRES"]'
