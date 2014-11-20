@@ -3,13 +3,30 @@ class OfferService
   base_uri 'api.sponsorpay.com/feed/v1'
 
   def self.search(query_params)
-    params_without_hash = collect_params(query_params)
-    get '/offers.json', query: params_without_hash.merge(
-      hashkey: HashKeyService.compute(params_without_hash)
-    )
+    begin
+      body, signature, code = submit_search_request(query_params)
+      json = JSON.parse(body)
+    rescue
+      raise OfferSearchException
+    end
+
+    unless code == 200 && validate_signature(body, signature)
+      raise OfferSearchException
+    end
+
+    create_offers(json)
   end
 
   private
+
+  def self.submit_search_request(query_params)
+    params_without_hash = collect_params(query_params)
+    response = get '/offers.json', query: params_without_hash.merge(
+      hashkey: HashKeyService.compute(params_without_hash)
+    )
+
+    [response.body, response.headers['X-Sponsorpay-Response-Signature'], response.code]
+  end
 
   def self.collect_params(query_params)
     {
@@ -24,6 +41,20 @@ class OfferService
       offer_types: Settings.fyber_api.offer_types,
       device_id: Settings.fyber_api.device_id
     }
+  end
+
+  def self.validate_signature(body, signature)
+    Digest::SHA1.hexdigest("#{body}#{Settings.fyber_api.api_key}") == signature
+  end
+
+  def self.create_offers(json)
+    json['offers'].map do |offer_json|
+      Offer.new(
+        title: offer_json['title'],
+        payout: offer_json['payout'],
+        thumbnail: offer_json['thumbnail']['lowres']
+      )
+    end
   end
 
 end

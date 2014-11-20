@@ -16,6 +16,7 @@ gem 'byebug', group: [:development, :test]
 
 gem 'httparty'
 gem 'rails_config'
+gem 'active_attr'
 
 group :development, :test do
   gem 'cucumber-rails', require: false
