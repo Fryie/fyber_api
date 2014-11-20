@@ -1,0 +1,1 @@
+class OfferSearchException < StandardError; end
